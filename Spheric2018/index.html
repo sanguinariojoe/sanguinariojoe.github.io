@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Generalized Boundary Local Coordinates: application to the computation of forces in a Boundary Integral SPH formulation</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/two_columns.css">
+        <link rel="stylesheet" href="css/katex-extra.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+<!--
+                                    SLIDES
+                                    ======
+-->
+
+
+<!-- INTRO -->
+<section>
+    <h2>Generalized Boundary Local Coordinates:</h2>
+    <h4>Application to the computation of forces in a Boundary Integral SPH formulation</h4>
+    <br style="line-height:4;">
+    <small>
+        J. L. Cercos-Pita &lt;jlcercos@gmail.com&gt;<br style="line-height:1;">
+        F. Maci&agrave;<br style="line-height:1;">
+        J. Calderon-Sanchez
+    </small>
+</section>
+
+<section>
+    <h3>Target 1: Avoid rejection</h3>
+    <video data-autoplay loop>
+        <source src="videos/reject.webm" data-src="videos/reject.webm" type="video/webm" />
+        <source src="videos/reject.mp4" data-src="videos/reject.mp4" type="video/mp4" />
+    </video>
+</section>
+
+<!-- GENERALIZED BOU(NDARY LOCAL COORDINATES -->
+<section>
+    <h3>Local Coordinates</h3>
+    <span class="fragment" data-fragment-index="1">
+        $F(\Omega) = \int_{\Omega} f(\bar{x}) \, dV(\bar{x})$
+    </span>
+    <span class="fragment" data-fragment-index="2">
+        $\vert \bar{y} - \bar{x} \vert > s \, h,
+            \forall \bar{x} \, \in \partial \Omega \, \rightarrow \,
+            f(\bar{y}) = 0$
+    </span>
+    <hr class="fragment" data-fragment-index="3">
+    <span class="fragment" data-fragment-index="3">
+        $F(\Omega) = \int_{\partial \Omega} ...$
+    </span>
+</section>
+
+<section>
+    <img data-src="images/Cereal-Guy-OK.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+    <h2>OK!</h2>
+</section>
+
+<section>
+    <h3>Local Coordinates</h3>
+    <div id="left" style="width:65%;margin-top:10%;text-align:center;">
+        <span class="fragment" data-fragment-index="1">
+            $\left \lbrace \begin{array}{l}
+                F(\Omega) = \int_{\partial \Omega} \int_0^{s \cdot h} f(\bar{y}) \, d\sigma \, dS(\bar{x})\\
+                \bar{y} = \bar{x} - \bar{n}(\bar{x}) \, \sigma   
+            \end{array} \right.$
+        </span>
+        <hr class="fragment" data-fragment-index="2">
+        <span class="fragment" data-fragment-index="2" style="color:red">
+            $\int_0^{s \cdot h} f(\bar{x} - \bar{n}(\bar{x}) \, \sigma) \, d\sigma \rightarrow$
+            <span style="font-size:200%"> &#9760; </span>
+        </span>
+    </div>
+    <div id="right" style="width:30%">
+        <img data-src="images/local_coordinates.svg" style="border:none;box-shadow:none;background:none"/>
+    </div>
+</section>
+
+<section>
+    <img data-src="images/Cereal-Guy-Maybe.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+    <h2>ok...</h2>
+</section>
+
+<section>
+    <h3>Generalized Local Coordinates</h3>
+    $\begin{array}{l}
+        \displaystyle{
+            \int_0^{s \cdot h} f(\bar{x} - \bar{n}(\bar{x}) \, \sigma) \, d\sigma \approx
+        }
+        \\
+        \displaystyle{
+            \int_{\Omega(\bar{x})} \frac{
+                f(\bar{y}) W(\bar{y} - \bar{x}; h)
+            }{
+                \int_{\partial \Omega(\bar{y})} W(\bar{z} - \bar{y}; h) dS(\bar{z})
+            } \, dV(\bar{y}),
+        }
+    \end{array}$
+    <br style="line-height:2;">
+    <br style="line-height:2;">
+    $\bigg(
+        \Omega(\bar{x}) = \mathcal{B}(\bar{x}) \cap \Omega;
+        \partial \Omega(\bar{x}) = \mathcal{B}(\bar{x}) \cap \partial \Omega
+    \bigg)$
+</section>
+
+<section>
+    <img data-src="images/Cereal-Guy-Suspicious.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+    <h2>I see...</h2>
+</section>
+
+<section>
+    <h3>Generalized Local Coordinates</h3>
+    $\begin{array}{l}
+    \displaystyle{
+        \int_{\Omega} f(\bar{x}) \, dV(\bar{x}) \approx
+    }
+    \\
+    \displaystyle{
+        \int_{\partial \Omega} \int_{\Omega(\bar{x})} \frac{
+            f(\bar{y}) W(\bar{y} - \bar{x}; h)
+        }{
+            \int_{\partial \Omega(\bar{y})} W(\bar{z} - \bar{y}; h) \, dS(\bar{z})
+        } \, dV(\bar{y})\,dS(\bar{x}),
+    }
+    \end{array}$
+</section>
+
+<section>
+    <img data-src="images/Cereal-Guy-ComeOn.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+    <h2>3 integrals!!! Are you serious???</h2>
+</section>
+
+<section>
+    <img data-src="images/Cereal-Guy-FuckYou.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+    <h2>This is a complete waste of time!!!</h2>
+</section>
+
+<section>
+    <h3>Generalized Local Coordinates</h3>
+    $\begin{array}{l}
+    \displaystyle{
+        \int_{\Omega} f(\bar{x}) \, dV(\bar{x}) \approx
+    }
+    \\
+    \displaystyle{
+        \color{red}{\int_{\partial \Omega}}
+        \color{green}{\int_{\Omega(\bar{x})}}
+        \frac{
+            f(\bar{y}) W(\bar{y} - \bar{x}; h)
+        }{
+            \color{yellow}{\int_{\partial \Omega(\bar{y})}
+            W(\bar{z} - \bar{y}; h) \, dS(\bar{z})
+        }} \, dV(\bar{y})\,dS(\bar{x}),
+    }
+    \end{array}$
+    <span style="color:red;" class="fragment">2D vs 3D</span><br>
+    <span style="color:green;" class="fragment">Just fluid particles close to the boundary</span><br>
+    <span style="color:yellow;" class="fragment">Renormalization factor just for fluid particles close to the boundary</span><br>
+</section>
+
+<section>
+    <h3>Generalized Local Coordinates</h3>
+    <div id="left">
+        <img data-src="images/whole_domain.svg" style="border:none;box-shadow:none;background:none"/>
+        VS.
+    </div>
+    <div id="right">
+        <img data-src="images/crop_domain.svg" style="border:none;box-shadow:none;background:none"/>
+    </div>
+</section>
+
+<!-- FORCES MEASUREMENT -->
+<section>
+    <h3>Forces computation in Boundary Integral formulation</h3>
+    <h4 class="fragment" data-fragment-index="1">Approach 1:</h4>
+    <span class="fragment" data-fragment-index="1">$\bar{F}_{\Omega \rightarrow \partial \Omega}^{p} = \sum_{i \in \Omega} \langle \nabla p(\bar{r}_i) \rangle \, V_i$</span><br>
+    <span class="fragment" data-fragment-index="2" style="color:white">
+        <span style="font-size:150%"> &#10004; </span>
+        Moment conservation
+    </span><br style="line-height:1;">
+    <span class="fragment" data-fragment-index="3" style="color:red">
+        <span style="font-size:150%"> &#9760; </span>
+        Moment per boundary
+    </span>
+</section>
+
+<section>
+    <h3>Forces computation in Boundary Integral formulation</h3>
+    <h4 class="fragment" data-fragment-index="1">Approach 2:</h4>
+    <span class="fragment" data-fragment-index="1">$\bar{F}_{\Omega \rightarrow \partial \Omega}^{p} = \sum_{i \in \partial \Omega} \langle p_i \rangle \, \bar{n}_i \, S_i$</span><br>
+    <span class="fragment" data-fragment-index="2" style="color:white">
+        <span style="font-size:150%"> &#10004; </span>
+        Moment per boundary
+    </span><br style="line-height:1;">
+    <span class="fragment" data-fragment-index="3" style="color:red">
+        <span style="font-size:150%"> &#9760; </span>
+        Moment conservation
+    </span>
+</section>
+
+<section>
+    <h3>Forces computation in Boundary Integral formulation</h3>
+    <span class="fragment" data-fragment-index="1">$\begin{array}{lcl}
+        \displaystyle{
+            \nabla p^{*}_{i} = 
+        }
+        & - & \displaystyle{
+            \frac{1 - \gamma_i}{\gamma_i}
+            \sum_{j \in \Omega_i} \left( p_i + p_j \right) \nabla_{i} W_{ij} \, V_j
+        }
+        \\
+        & + & \displaystyle{
+            \frac{1}{\gamma_i}
+            \sum_{j \in \partial \Omega_i} \left( p_i + p_j \right) \bar{n}_j W_{ij} \, S_j.
+        }
+        \end{array}$
+    </span><br>
+    <span class="fragment" data-fragment-index="2">$
+        \bar{F}_{\Omega \rightarrow \partial \Omega}^{p} = 
+        \sum_{i \in \partial \Omega} S_i
+            \sum_{j \in \Omega_i} \frac{1}{\sum_{k \in \partial \Omega_j} W_{jk} S_k}
+        \nabla p^{*}_{j} \, W_{ij} \, V_j$
+    </span><br>
+    <span class="fragment" data-fragment-index="3" style="color:white">
+        <span style="font-size:150%"> &#10004; </span>
+        Moment per boundary
+    </span><br style="line-height:1;">
+    <span class="fragment" data-fragment-index="4" style="color:white">
+        <span style="font-size:150%"> &#10004; </span>
+        Moment conservation
+    </span>
+</section>
+
+<!-- PRACTICAL APPLICATION -->
+<section>
+    <h3>Practical application</h3>
+    <img data-src="images/Vmod_comparison.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+</section>
+
+<section>
+    <h3>Practical application</h3>
+    <img data-src="images/cdp_box.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+</section>
+
+<section>
+    <h3>Practical application</h3>
+    <img data-src="images/cdp_total.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+</section>
+
+
+<!-- THE END -->
+<section>
+    <h2>Thanks for your attention!</h2>
+    <img data-src="images/PizzaPython.gif" width="50%" border="0">
+</section>
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            Reveal.initialize({
+                // Display controls in the bottom right corner
+                controls: false,
+                // Display a presentation progress bar
+                progress: true,
+                // Display the page number of the current slide
+                slideNumber: 'c/t',
+                // Push each slide change to the browser history
+                history: true,
+                // Enable keyboard shortcuts for navigation
+                keyboard: true,
+                // Enable the slide overview mode
+                overview: false,
+                // Vertical centering of slides
+                center: true,
+                // Enables touch navigation on devices with touch input
+                touch: true,
+                // Loop the presentation
+                loop: false,
+                // Change the presentation direction to be RTL
+                rtl: false,
+                // Randomizes the order of slides each time the presentation loads
+                shuffle: false,
+                // Turns fragments on and off globally
+                fragments: true,
+                // Flags if the presentation is running in an embedded mode,
+                // i.e. contained within a limited portion of the screen
+                embedded: false,
+                // Flags if we should show a help overlay when the questionmark
+                // key is pressed
+                help: false,
+                // Flags if speaker notes should be visible to all viewers
+                showNotes: true,
+                // Number of milliseconds between automatically proceeding to the
+                // next slide, disabled when set to 0, this value can be overwritten
+                // by using a data-autoslide attribute on your slides
+                autoSlide: 0,
+                // Stop auto-sliding after user input
+                autoSlideStoppable: true,
+                // Use this method for navigation when auto-sliding
+                autoSlideMethod: Reveal.navigateNext,
+                // Enable slide navigation via mouse wheel
+                mouseWheel: false,
+                // Hides the address bar on mobile devices
+                hideAddressBar: true,
+                // Opens links in an iframe preview overlay
+                previewLinks: false,
+                // Transition style
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                // Transition speed
+                transitionSpeed: 'fast', // default/fast/slow
+                // Transition style for full page slide backgrounds
+                backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+                // Number of slides away from the current that are visible
+                viewDistance: 3,
+                // Parallax background image
+                parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+                // Parallax background size
+                parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+                // Number of pixels to move the parallax background per slide
+                // - Calculated automatically unless specified
+                // - Set to 0 to disable movement along an axis
+                parallaxBackgroundHorizontal: null,
+                parallaxBackgroundVertical: null,
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math-katex/math-katex.js', async: true }
+                ]
+            });
+        </script>
+    </body>
+</html>

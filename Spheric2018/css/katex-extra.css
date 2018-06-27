@@ -1,0 +1,4 @@
+.katex .mfrac .frac-line:before{
+    border: solid;
+    border-width: 2.0px;
+}
