@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="729.44598mm"
+   height="366.88898mm"
+   viewBox="0 0 2584.6511 1300.0003"
+   id="svg3388"
+   version="1.1"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   sodipodi:docname="24_segmentation_rough_scheme.svg"
+   inkscape:export-filename="/home/nasal/Papers/cpcprogramlibrary2016/CPC_ProgramLibrary_2016/24_segmentation_scheme.png"
+   inkscape:export-xdpi="75.004318"
+   inkscape:export-ydpi="75.004318">
+  <defs
+     id="defs3390">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker883"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path881"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4487"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4489"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4737"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path4739"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6433"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6435"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="558.42446"
+     inkscape:cy="897.53316"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1006"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3393">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(656,-210.64793)">
+    <image
+       sodipodi:absref="/home/pepe/Papers/PyConES2017/Presentation/images/segmentation/0067.png"
+       xlink:href="0067.png"
+       y="210.64793"
+       x="-656"
+       id="image3415"
+       preserveAspectRatio="none"
+       height="512"
+       width="512" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker883)"
+       d="M -138.40083,466.04603 H 186.4709"
+       id="path4729"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4771"
+       width="225.16249"
+       height="143.44165"
+       x="-110.11656"
+       y="397.35565" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2.0281837"
+       y="455.94452"
+       id="text4779"><tspan
+         sodipodi:role="line"
+         x="2.0281837"
+         y="455.94452"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan4783">3D</tspan><tspan
+         id="tspan4358"
+         sodipodi:role="line"
+         x="2.0281837"
+         y="505.94452"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">Watershed</tspan></text>
+    <g
+       id="g4622">
+      <image
+         sodipodi:absref="/home/pepe/Papers/PyConES2017/Presentation/images/segmentation/voxels.png"
+         xlink:href="voxels.png"
+         style="fill:none;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         width="684.65118"
+         height="512"
+         preserveAspectRatio="none"
+         id="image3488"
+         x="206"
+         y="210.64793" />
+      <rect
+         y="212.58055"
+         x="207.93234"
+         height="508.13531"
+         width="682.78632"
+         id="rect4303"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.8646903;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4362"
+       d="M 901.59917,466.04603 H 1226.4709"
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4737)" />
+    <rect
+       y="397.35565"
+       x="929.88342"
+       height="143.44165"
+       width="225.16249"
+       id="rect4364"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text4366"
+       y="455.94452"
+       x="1042.0282"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan4368"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         y="455.94452"
+         x="1042.0282"
+         sodipodi:role="line">2D</tspan><tspan
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         y="505.94452"
+         x="1042.0282"
+         sodipodi:role="line"
+         id="tspan4370">Watershed</tspan></text>
+    <g
+       id="g4618">
+      <image
+         sodipodi:absref="/home/pepe/Papers/PyConES2017/Presentation/images/segmentation/background.png"
+         xlink:href="background.png"
+         width="684.65118"
+         height="512"
+         preserveAspectRatio="none"
+         id="image4355"
+         x="1242"
+         y="210.64793" />
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.8646903;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4374"
+         width="682.78632"
+         height="508.13531"
+         x="1243.9324"
+         y="212.58055" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6433)"
+       d="M 1585.9192,732.0052 V 976.46211"
+       id="path4281"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g4603"
+       transform="translate(2129.3813,196.84109)">
+      <rect
+         y="610.78345"
+         x="-741.41138"
+         height="96.974648"
+         width="395.9798"
+         id="rect4597"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text4599"
+         y="677.59558"
+         x="-543.07855"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50px;line-height:1.25;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';text-align:center;text-anchor:middle"
+           y="677.59558"
+           x="-543.07855"
+           id="tspan4601"
+           sodipodi:role="line">Substract</tspan></text>
+    </g>
+    <g
+       id="g4447"
+       transform="translate(0,-52.000022)">
+      <image
+         sodipodi:absref="/home/pepe/Papers/PyConES2017/Presentation/images/segmentation/cavity_filtered.png"
+         xlink:href="cavity_filtered.png"
+         width="684.65118"
+         height="512"
+         preserveAspectRatio="none"
+         id="image4440"
+         x="206"
+         y="1050.6479" />
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.8646903;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4445"
+         width="682.78632"
+         height="508.13531"
+         x="207.93234"
+         y="1052.5806" />
+    </g>
+    <g
+       id="g4466"
+       transform="translate(0,-32)">
+      <image
+         sodipodi:absref="/home/pepe/Papers/PyConES2017/Presentation/images/segmentation/cavity.png"
+         xlink:href="cavity.png"
+         width="684.65118"
+         height="512"
+         preserveAspectRatio="none"
+         id="image4459"
+         x="1242"
+         y="1030.6479" />
+      <rect
+         y="1032.5806"
+         x="1243.9324"
+         height="508.13531"
+         width="682.78632"
+         id="rect4464"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.8646903;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker4487)"
+       d="M 1234.8294,1255.8698 H 909.95769"
+       id="path4472"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4474"
+       width="225.16249"
+       height="143.44165"
+       x="981.88342"
+       y="1187.3557" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1094.0282"
+       y="1245.9446"
+       id="text4476"><tspan
+         sodipodi:role="line"
+         x="1094.0282"
+         y="1245.9446"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan4478">Body</tspan><tspan
+         id="tspan4480"
+         sodipodi:role="line"
+         x="1094.0282"
+         y="1295.9446"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">selection</tspan></text>
+  </g>
+</svg>
