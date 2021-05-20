@@ -1,0 +1,434 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Analysis of time integration schemes for energy conservation in WC-SPH</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/quiz.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<script src="js/jquery-3.4.1.min.js"></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+<section>
+	<h2>Analysis of time integration schemes for energy conservation in WC-SPH</h2>
+	<div style="width:100%">
+		<div style="width:49%;float:left;">
+			<small>
+				<u>EQUA Simulation AB</u>
+				<br>
+				Jose Luis Cercos-Pita
+				<br>
+				&lt;jlcercos@upm.com&gt;
+			</small>
+		</div>
+		<div style="width:49%;float:right;">
+			<small>
+				<u>CEHINAV UPM</u>
+				<br>
+				Pablo Eleazar Merino-Alonso
+				<br>
+				Javier Calderon-Sanchez
+				<br>
+				Daniel Duque
+			</small>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h2>In this presentation we will have a quiz!</h2>
+	<p class="fragment">For instance...</p>
+</section>
+
+<section>
+	<h3>One of the most praised features of SPH is...</h3>
+
+	<ol class="quiz">
+		<li class="fragment" data-fragment-index="1" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				its great conservation properties
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="2" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				its great consistency properties
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				its great stability properties
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				none, we just enjoy pain
+			</div>
+		</li>
+	</ol>
+</section>
+
+<section data-background-image="imgs/achievement.gif">
+	<img data-src="imgs/sph_muscle.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+</section>
+
+<section>
+	<h3>Energy conservation violations were shown by...</h3>
+
+	<ol class="quiz">
+		<li class="fragment" data-fragment-index="1" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				Colagrossi et al (2009)
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="2" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				Me et al (2017)
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				You (2021)
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				Alien vs. Predator (2004)
+			</div>
+		</li>
+	</ol>
+</section>
+
+<section data-background-image="imgs/achievement.gif">
+	<img data-src="imgs/ace_of_literature.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+</section>
+
+<section>
+	<h2>I hope you nailed them!</h2>
+</section>
+
+<section>
+	<span>
+		$$\SPH{\frac{\D \rho}{\D t}}_i(t) = -\rho_i(t) \SPH{\Div{\bs{u}}}_i(t)$$
+	</span>
+	<br>
+	<span>
+		$$\SPH{\frac{\D \bs{u}}{\D t}}_i(t) =
+			- \frac{\SPH{\Grad{p}}_i(t)}{\rho_i(t)}
+			+ \bs{g}
+			- k_{\Grad{\gamma}} \frac{p_i(t) \SPH{\Grad{\gamma}}_i(t)}{\rho_i (t)}$$
+	</span>
+</section>
+
+<section>
+	<span>
+		$$\SPH{\Div{\bs{u}}}_i(t) = \sum_{j \in \Omega}
+		\frac{\bs{u}_j(t) - \bs{u}_i(t)}{\rho_j(t)} \Grad{W}_{ij} m_j$$
+	</span>
+	<br>
+	<span>
+		$$\SPH{\Grad{p}}_i(t) = \sum_{j \in \Omega}
+		\frac{p_j(t) - p_i(t)}{\rho_j(t)} \Grad{W}_{ij} m_j$$
+	</span>
+	<span>
+		$$\SPH{\Grad{\gamma}}_i(t) = \sum_{j \in \Omega}
+		\frac{1}{\rho_j(t)} \Grad{W}_{ij} m_j$$
+	</span>
+
+	<span class="fragment">
+		<small>Colagrossi et al (2012) - "Particle packing algorithm for SPH schemes"</small>
+	</span>
+</section>
+
+<section>
+	$$\SPH{P}_k(t) = \sum_{i \in \Omega} m_i \, \bs{u}_i(t) \cdot \SPH{\frac{\D \bs{u}}{\D t}}_i(t)$$
+</section>
+
+<section>
+	$$\SPH{P}_k(t) = \SPH{P}_{\Grad{p}}(t) - P_p(t) + k_{\Grad{\gamma}} \SPH{P}_{\Grad{\gamma}}(t)$$
+	<br>
+	<span class="fragment">
+		$$\SPH{P}_{\Grad{p}}(t) =
+			- \sum_{i \in \Omega} \frac{m_i}{\rho_i(t)} \bs{u}_i(t) \cdot
+			\SPH{\Grad{p}}_i(t)$$
+	</span>
+	<br>
+	<span class="fragment">
+		$$P_{p}(t) = - \sum_{i \in \Omega} m_i \bs{u}_i(t) \cdot g$$
+	</span>
+	<br>
+	<span class="fragment">
+		$$\SPH{P}_{\Grad{\gamma}}(t) =
+			- \sum_{i \in \Omega} \frac{m_i p_i(t)}{\rho_i(t)} \bs{u}_i(t) \cdot
+			\SPH{\Grad{\gamma}}_i(t)$$
+	</span>
+</section>
+
+<section>
+	$$\SPH{P}_c(t) = \sum_{i \in \Omega} \frac{m_i p_i(t)}{\rho_i^2(t)} \SPH{\frac{\D \rho}{\D t}}_i(t)$$
+</section>
+
+<section>
+	<h4>We can relate $\SPH{P}_k$ and $\SPH{P}_c$ because...</h4>
+
+	<ol class="quiz">
+		<li class="fragment" data-fragment-index="1" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				$\SPH{P}_k + P_p + \SPH{P}_c = 0$
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="2" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				$\bs{u}_i \cdot \SPH{\Grad{p}}_i =
+				p_i \SPH{\Div{\bs{u}}}_i$
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				<span style="font-size: 1em !important;">
+					$\sum \bs{u}_i \cdot (\SPH{\Grad{p}}_i + 2 p_i \SPH{\Grad{\gamma}}_i)=
+					\sum p_i \SPH{\Div{\bs{u}}}_i$
+				</span>
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				$E = m c^2$
+			</div>
+		</li>
+	</ol>
+</section>
+
+<section data-background-image="imgs/achievement.gif">
+	<img data-src="imgs/mastering_power.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+</section>
+
+<section>
+	$$\SPH{P}_k(t) + P_p(t) + \SPH{P}_c(t) =
+	(k_{\Grad{\gamma}} - 2) \SPH{P}_{\Grad{\gamma}}(t)$$
+</section>
+
+<section>
+	<p>If $k_{\Grad{\gamma}} = 2$ we can assert that...</p>
+
+	<ol class="quiz">
+		<li class="fragment" data-fragment-index="1" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				We are conserving energy
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="2" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				We are not conserving energy
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				We are maybe or maybe not conserving energy
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				All of the above
+			</div>
+		</li>
+	</ol>
+</section>
+
+<section data-background-image="imgs/achievement.gif">
+	<img data-src="imgs/schroedinger.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+</section>
+
+<section>
+	<h2>Have you scored 4/4?</h2>
+	<h2 class="fragment">How so we are not conserving energy?</h2>
+</section>
+
+<section>
+	<p>A posteriori Euler equivalent scheme</p>
+	$$\frac{\D \rho_i}{\D t} (t_{n + 1/2}) = \frac{\rho_i(t_{n + 1}) - \rho_i(t_{n})}{\Delta t}$$
+	$$\frac{\D \bs{u}_i}{\D t} (t_{n + 1/2}) = \frac{\bs{u}_i(t_{n + 1}) - \bs{u}_i(t_{n})}{\Delta t}$$
+	<p class="fragment">Feel free to remove the "($t_{n + 1/2}$)" from left hand sides!</p>
+</section>
+
+<section>
+	<p>If...</p>
+	$$E_k(t) = \sum_{i \in \Omega} m_i \, \vert \bs{u}_i(t) \vert^2$$
+	<p class="fragment" data-fragment-index="1">&lt;The actual kinetic energy of the system&gt;</p>
+	<p class="fragment" data-fragment-index="2">then...</p>
+	<span class="fragment" data-fragment-index="2">
+	$$\frac{E_k(t_{n + 1}) - E_k(t_{n})}{\Delta t} = \sum_{i \in \Omega} m_i \, \bs{u}_i(t_{n + 1/2}) \cdot \frac{\D \bs{u}_i}{\D t} (t_{n + 1/2})$$
+	</span>
+	<p class="fragment" data-fragment-index="3">&lt;The actual kinetic power&gt;</p>
+</section>
+
+<section>
+	<p>Thus we can grant conservation...</p>
+
+	<ol class="quiz">
+		<li class="fragment" data-fragment-index="1" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				Applying an implicit midpoint scheme
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="2" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				Reducing the time step
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				Applying an arbitrary implicit scheme
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				Marinating it
+			</div>
+		</li>
+	</ol>
+</section>
+
+<section data-background-image="imgs/achievement.gif">
+	<img data-src="imgs/time_traveler.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+</section>
+
+<section>
+	<img src="imgs/normal_impact.png" width="50%" style="background:none;border:none;box-shadow:none;">
+</section>
+
+<section>
+	<img src="imgs/energy.png" width="50%" style="background:none;border:none;box-shadow:none;">
+	<p>It is stable!</p>
+	<p class="fragment">Wrong... but stable!</p>
+</section>
+
+<section>
+	<img src="imgs/energy_pst.png" width="50%" style="background:none;border:none;box-shadow:none;">
+</section>
+
+<section>
+	<p>Who is right?</p>
+
+	<ol class="quiz">
+		<li class="fragment" data-fragment-index="1" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				Marrone et al (2015)
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="2" data-animate="fadeInRight">
+			<div class="fragment highlight-red" data-fragment-index="5">
+				Me et al
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				No-one
+			</div>
+		</li>
+		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
+			<div class="fragment highlight-green" data-fragment-index="5">
+				Both
+			</div>
+		</li>
+	</ol>
+</section>
+
+<section data-background-image="imgs/achievement.gif">
+	<img data-src="imgs/time_traveler.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+</section>
+
+<section>
+	<video data-autoplay src="imgs/video.webm"></video>
+</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+		<script src="js/animate.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: true,
+				math: {
+					rendering: {
+						macros: {"\\bs": "\\boldsymbol{#1}",
+						         "\\D": "\\mathrm{d}",
+						         "\\Grad": "\\nabla",
+						         "\\Div": "\\nabla \\cdot {#1}",
+						         "\\Lap": "\\Delta",
+						         "\\SPH": "\\left\\langle #1 \\right\\rangle"},
+					}
+				},
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math-katex/math-katex.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
+
+
+
+Reveal.initialize({
+    // … presentation configuration …
+
+    // `math-katex` plugin:
+
+    // *Optional* configuration:
+    math: {
+        // Uncomment to disable syntax error notifications
+        // notificationsEnabled: false   // default: true
+
+        // Elements to ignore for math rendering (defaults shown):
+        // ignoredElements: [ 'pre', 'code' ]
+
+        // Set `enableGlobally` to `false` to avoid excessive
+        // escaping of dollar characters. You will then need to
+        // activate `$…$`-style replacements per slide with a
+        // `data-math` attribute (formulas wrapped in elements
+        // are still activated everywhere).
+        //
+        // enableGlobally: false
+
+        // In case you need to load KaTeX from a different
+        // location (relative or absolute URL):
+        // katexScript:     'path/to/katex/katex.min.js',
+        // katexStylesheet: 'path/to/katex/katex.min.css'
+    },
+
+    // Specify the plugin as a dependency:
+    dependencies: [
+        { src: 'plugin/math-katex/math-katex.js', async: true }
+    ]
+});
