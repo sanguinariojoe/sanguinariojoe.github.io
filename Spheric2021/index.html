@@ -257,7 +257,7 @@
 </section>
 
 <section data-background-image="imgs/achievement.gif">
-	<img data-src="imgs/schroedinger.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+	<img data-src="imgs/schroedinger.png" width="60%" style="border:none;box-shadow:none;background:none"/>
 </section>
 
 <section>
@@ -278,7 +278,7 @@
 	<p class="fragment" data-fragment-index="1">&lt;The actual kinetic energy of the system&gt;</p>
 	<p class="fragment" data-fragment-index="2">then...</p>
 	<span class="fragment" data-fragment-index="2">
-	$$\frac{E_k(t_{n + 1}) - E_k(t_{n})}{\Delta t} = \sum_{i \in \Omega} m_i \, \bs{u}_i(t_{n + 1/2}) \cdot \frac{\D \bs{u}_i}{\D t} (t_{n + 1/2})$$
+	$$\frac{E_k(t_{n + 1}) - E_k(t_{n})}{\Delta t} = \sum_{i \in \Omega} m_i \, \bs{u}_i(t_{n + 1/2}) \cdot \frac{\D \bs{u}_i}{\D t} (t_{n + 1/2}) = P_k(t)$$
 	</span>
 	<p class="fragment" data-fragment-index="3">&lt;The actual kinetic power&gt;</p>
 </section>
@@ -311,7 +311,33 @@
 </section>
 
 <section data-background-image="imgs/achievement.gif">
-	<img data-src="imgs/time_traveler.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+	<img data-src="imgs/time_traveler.png" width="60%" style="border:none;box-shadow:none;background:none"/>
+</section>
+
+<section>
+	<p>If...</p>
+	$$\frac{\D \bs{u}_i}{\D t} (t_{n + 1/2}) = \SPH{\frac{\D \bs{u}}{\D t}}_i(t_{n + 1/2})$$
+	<p class="fragment" data-fragment-index="1">then...</p>
+	<span class="fragment" data-fragment-index="1">
+	$$\frac{E_k(t_{n + 1}) - E_k(t_{n})}{\Delta t} = \SPH{P}_k(t_{n + 1/2})$$
+	</span>
+	<p class="fragment" data-fragment-index="2">and then if $k_{\Grad{\gamma}} = 2$...</p>
+	<span class="fragment" data-fragment-index="2">
+	$$\SPH{P}_k(t_{n + 1/2}) + P_p(t_{n + 1/2}) + \SPH{P}_c(t_{n + 1/2}) = 0$$
+	</span>
+</section>
+
+<section>
+	<p>If...</p>
+	$$\frac{\D \rho_i}{\D t} (t_{n + 1/2}) = \SPH{\frac{\D \rho}{\D t}}_i(t_{n + 1/2})$$
+	<p class="fragment" data-fragment-index="1">then...</p>
+	<span class="fragment" data-fragment-index="1">	
+	$$P_c(t_{n + 1/2}) = \SPH{P}_c(t_{n + 1/2})$$
+	</span>
+	<p class="fragment" data-fragment-index="2">and finally...</p>
+	<span class="fragment" data-fragment-index="2">
+	$$E_k(t_{n}) + E_p(t_{n}) + E_c(t_{n}) = E(t=0)$$
+	</span>
 </section>
 
 <section>
@@ -319,13 +345,55 @@
 </section>
 
 <section>
-	<img src="imgs/energy.png" width="50%" style="background:none;border:none;box-shadow:none;">
-	<p>It is stable!</p>
-	<p class="fragment">Wrong... but stable!</p>
+	<h3>Explicit</h3>
+	<div style="width:100%">
+		<div style="width:49%;float:left;">
+			<img src="imgs/normal_impact_euler_energy.png" width="100%" style="background:none;border:none;box-shadow:none;">
+		</div>
+		<div style="width:49%;float:right;">
+			<img src="imgs/normal_impact_heuns_energy.png" width="100%" style="background:none;border:none;box-shadow:none;">
+		</div>
+	</div>
+	<div style="width:100%">
+		<div style="width:49%;float:left;">
+			<span>Euler</span>
+		</div>
+		<div style="width:49%;float:right;">
+			<span>Heun/Improved Euler</span>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h3>Explicit</h3>
+	<div style="width:100%">
+		<div style="width:49%;float:left;">
+			<img src="imgs/normal_impact_rco_0.png" width="100%" style="background:none;border:none;box-shadow:none;">
+		</div>
+		<div style="width:49%;float:right;">
+			<img src="imgs/normal_impact_rco.png" width="100%" style="background:none;border:none;box-shadow:none;">
+		</div>
+	</div>
+	<div style="width:100%">
+		<div style="width:49%;float:left;">
+			<span>$$\frac{t c_0}{L} = 0$$</span>
+		</div>
+		<div style="width:49%;float:right;">
+			<span>$$\frac{t c_0}{L} = 0.2$$</span>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h3>Implicit midpoint</h3>
+	<img src="imgs/normal_impact_implicit_energy.png" width="50%" style="background:none;border:none;box-shadow:none;">
 </section>
 
 <section>
 	<img src="imgs/energy_pst.png" width="50%" style="background:none;border:none;box-shadow:none;">
+	<small><b>BLUE</b> = Marrone et al (2015) - "Prediction of energy losses in water impacts using incompressible and weakly compressible models"</small>
+	<small><b>BLACK</b> = Me et al (2021) - "Changing title work"</small>
+</small>
 </section>
 
 <section>
@@ -356,11 +424,13 @@
 </section>
 
 <section data-background-image="imgs/achievement.gif">
-	<img data-src="imgs/time_traveler.png" width="60%" style="border:none;box-shadow:none;background:white"/>
+	<img data-src="imgs/fair.png" width="60%" style="border:none;box-shadow:none;background:none"/>
 </section>
 
 <section>
-	<video data-autoplay src="imgs/video.webm"></video>
+	<video data-autoplay>
+		<source data-src="imgs/video.webm" type="video/webm" />
+	</video>
 </section>
 
 			</div>
