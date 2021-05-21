@@ -273,14 +273,14 @@
 </section>
 
 <section>
-	<p>If...</p>
-	$$E_k(t) = \sum_{i \in \Omega} m_i \, \vert \bs{u}_i(t) \vert^2$$
+	<p>If... $E_k(t) = \sum_{i \in \Omega} m_i \, \vert \bs{u}_i(t) \vert^2$</p>
 	<p class="fragment" data-fragment-index="1">&lt;The actual kinetic energy of the system&gt;</p>
 	<p class="fragment" data-fragment-index="2">then...</p>
 	<span class="fragment" data-fragment-index="2">
-	$$\frac{E_k(t_{n + 1}) - E_k(t_{n})}{\Delta t} = \sum_{i \in \Omega} m_i \, \bs{u}_i(t_{n + 1/2}) \cdot \frac{\D \bs{u}_i}{\D t} (t_{n + 1/2}) = P_k(t)$$
+	$$\frac{E_k(t_{n + 1}) - E_k(t_{n})}{\Delta t} = P_k(t)$$
+	$$P_k(t) = \sum_{i \in \Omega} m_i \, \bs{u}_i(t_{n + 1/2}) \cdot \frac{\D \bs{u}_i}{\D t} (t_{n + 1/2})$$
 	</span>
-	<p class="fragment" data-fragment-index="3">&lt;The actual kinetic power&gt;</p>
+	<p class="fragment" data-fragment-index="3">&lt;The actual kinetic power of the system&gt;</p>
 </section>
 
 <section>
@@ -299,7 +299,7 @@
 		</li>
 		<li class="fragment" data-fragment-index="3" data-animate="fadeInRight">
 			<div class="fragment highlight-red" data-fragment-index="5">
-				Applying an arbitrary implicit scheme
+				Applying any implicit scheme
 			</div>
 		</li>
 		<li class="fragment" data-fragment-index="4" data-animate="fadeInRight">
