@@ -1,9 +1,11 @@
 .quiz {
     list-style-type: upper-alpha !important;
-    width: calc(100vw);
+    width: 960px;
+    position: fixed;
+    left: -50px;
 }
 .quiz li {
-    width: calc(50vw);
+    width: 100%;
     padding-left: 16px;
     border-top-right-radius: 10em;
     border-bottom-right-radius: 10em;
